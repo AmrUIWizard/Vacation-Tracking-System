@@ -72,8 +72,8 @@ The organization needs a **Vacation Tracking System** to automate and speed up t
 ---
 
 #### C. Sequence Diagram
-![[employee_sequence.png]]
-![[manager_sequence.png]]
+![Employee sequence](employee_sequence.png)
+![Manager sequence](manager_sequence.png)
 
 ---
 #### D. Pseudocode
