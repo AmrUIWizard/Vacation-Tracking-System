@@ -156,3 +156,78 @@ END
 ![Manager Screen View](manager_screen_view.png)
 
 ___
+
+#### A Performance Question
+
+**Question:** What if we need to have in the future another status like HR_Pending, HR_Approval
+ with minimum change? 
+--
+ **Answer:**  In my opinion, best solution for this case is to create separate table with name `Vaction Status` and if we need to add new status in the future will just simply and new one in the table with its name and id.
+
+**Submit A Request Pseudocode:**
+```sql
+FUNCTION SubmitVacationRequest(employee_id, start_date, end_date):
+
+    // Step 1: Validate employee and dates (same as before)
+    VALIDATE employee_id, start_date, end_date
+
+    // Step 2: Get "Pending" status dynamically
+    status_id = Database.selectOne(
+        "VacationStatus",
+        where = { status_name: "Pending" }
+    ).status_id
+
+    // Step 3: Insert request with status_id
+    request_id = Database.insert(
+        "LeaveRequest",
+        {
+            employee_id: employee_id,
+            start_date: start_date,
+            end_date: end_date,
+            total_days: calculateBusinessDays(start_date, end_date),
+            status_id: status_id,
+            submitted_at: NOW()
+        }
+    )
+
+    RETURN "Vacation request submitted successfully with status: Pending"
+END FUNCTION
+```
+
+**Approving / Updating a Request Pseudocode:**
+```sql
+FUNCTION UpdateRequestStatus(request_id, new_status_name, approver_id):
+
+    // Step 1: Get status_id dynamically
+    status_record = Database.selectOne(
+        "VacationStatus",
+        where = { status_name: new_status_name }
+    )
+
+    IF status_record IS NULL THEN
+        RETURN "Error: Invalid status name"
+    ENDIF
+
+    // Step 2: Update LeaveRequest with the new status
+    Database.update(
+        "LeaveRequest",
+        request_id,
+        { status_id: status_record.status_id }
+    )
+
+    // Step 3: Log the change
+    AuditLog.record(
+        actor_id = approver_id,
+        action_type = "Status Update to " + new_status_name,
+        entity = "LeaveRequest",
+        entity_id = request_id,
+        timestamp = NOW()
+    )
+
+    RETURN "Request status updated to " + new_status_name
+END FUNCTION
+```
+
+___
+
+
