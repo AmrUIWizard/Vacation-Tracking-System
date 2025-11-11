@@ -144,3 +144,15 @@ BEGIN
 
 END
 ```
+
+---
+
+#### Initially UI Screens (Employee & Manager)
+
+##### 1- Employee Screen View
+![Employee Screen View](employee_screen_view.png)
+
+##### 2- Manager Screen View
+![Manager Screen View](manager_screen_view.png)
+
+___
