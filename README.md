@@ -64,16 +64,16 @@ The organization needs a **Vacation Tracking System** to automate and speed up t
 #### B. Flowcharts
 
 ##### 1- Employee Flowchart
-![[employee_flowchart.png]]
-
+![Employee flowchart](employee_flowchart.png)
 ##### 2- Manager Flowchart
-![[manager_flowchart.png]]
+![Manager Flowchart](manager_flowchart.png)
 
 ---
 
 #### C. Sequence Diagram
-![[employee_sequence.png]]
-![[manager_sequence.png]]
+![Employee sequence](employee_sequence.png)
+
+![Manager sequence](manager_sequence.png)
 
 ---
 #### D. Pseudocode
