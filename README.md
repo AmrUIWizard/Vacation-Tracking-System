@@ -49,7 +49,7 @@ The organization needs a **Vacation Tracking System** to automate and speed up t
 ## **Use Case - Manage Time**
 
 ##### **Actors:** Employee, Manager, HR Clerk 
-
+**Goal:** Submit new vacation request and approve it through manager
 
 #### A. Core Entities
 | Entity                             | Description                                         | Key Fields                                                                                                  |
@@ -230,4 +230,13 @@ END FUNCTION
 
 ___
 
+## Use Case - Withdraw Vacation Request
 
+**Actor:** Employee
+**Goal:** Withdraw a pending vacation request via `employee`
+
+#### A. Flow Chart
+![Withdraw Request](withdraw_request_flowchart.png)
+
+#### B. Sequence Diagram
+![Withdraw Sequence](withdraw_request_sequence.png)]]
